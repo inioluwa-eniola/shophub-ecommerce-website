@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import { useCart } from "../context/CartContext";
 
 const Checkout = () => {
+  const [orderPlaced, setOrderPlaced] = useState(false)
   const {
     getCartItemsWithProducts,
     updateQuantity,
@@ -16,6 +17,7 @@ const Checkout = () => {
   function placeOrder() {
     alert("successful order")
     clearCart()
+    setOrderPlaced(true)
   }
 
   return (
@@ -84,7 +86,7 @@ const Checkout = () => {
               className="btn btn-primary btn-large btn-block" 
               onClick={placeOrder}
             >
-              Place Order
+              {orderPlaced ? null : "Place Order"}
             </button>
           </div>
         </div>

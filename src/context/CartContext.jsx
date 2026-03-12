@@ -19,7 +19,6 @@ export default function CartProvider({ children }) {
       );
       setCartItems(updatedCartItems);
     } else {
-      cartItems.push({});
       setCartItems((prev) => [...prev, { id: productId, quantity: 1 }]);
     }
   }

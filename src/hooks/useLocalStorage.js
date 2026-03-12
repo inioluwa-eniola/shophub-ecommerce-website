@@ -12,7 +12,7 @@ export function useLocalStorage() {
   function getItem(key) {
     try {
       const rawLoggedInUser = window.localStorage.getItem(key)
-      return rawLoggedInUser === null ? [] : JSON.parse(rawLoggedInUser)
+      return rawLoggedInUser === null ? null : JSON.parse(rawLoggedInUser)
     } catch(error) {
       console.log(`Error getting ${key} from localStorage`, error)
       return null
