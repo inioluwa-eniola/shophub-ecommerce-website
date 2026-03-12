@@ -5,15 +5,17 @@ export function useLocalStorage() {
       return loggedInUser
     } catch (error) {
       console.log(`Error setting ${key} to localStorage`, error)
+      return null
     }
   }
   
   function getItem(key) {
     try {
-      const loggedInUser = JSON.parse(window.localStorage.getItem(key) || "[]")
-      return loggedInUser
+      const rawLoggedInUser = window.localStorage.getItem(key)
+      return rawLoggedInUser === null ? [] : JSON.parse(rawLoggedInUser)
     } catch(error) {
       console.log(`Error getting ${key} from localStorage`, error)
+      return null
     }
   }
   
@@ -22,6 +24,7 @@ export function useLocalStorage() {
       window.localStorage.removeItem(key)
     } catch (error) {
       console.log(`Error removing ${key} from localStorage`, error)
+      return null
     }
   }
   

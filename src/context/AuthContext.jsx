@@ -1,4 +1,4 @@
-import { useState, createContext } from "react";
+import { useState, useContext, createContext } from "react";
 import { useLocalStorage } from "../hooks/useLocalStorage";
 
 const AuthContext = createContext(null);
@@ -6,7 +6,7 @@ const AuthContext = createContext(null);
 export default function AuthProvider({ children }) {
   const { setItem, getItem, removeItem } = useLocalStorage();
   const [user, setUser] = useState(
-    getItem("currentUserEmail") ? { email: getItem("currentUserEmail") } : null,
+    getItem("currentUserEmail") ? { email: getItem("currentUserEmail")} : null,
   );
 
   function signUp(email, password) {
@@ -49,4 +49,10 @@ export default function AuthProvider({ children }) {
   );
 }
 
-export { AuthContext };
+
+export function useAuth() {
+  const context = useContext(AuthContext);
+
+  return context
+}
+
